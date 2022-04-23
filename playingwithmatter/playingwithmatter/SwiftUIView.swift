@@ -8,13 +8,12 @@
 import SwiftUI
 
 struct SwiftUIView: View {
+    @Binding var Counter: Int
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        Text("\(Int(Counter))")
+        
+        Image("bottle")
+            .scaledToFit()
     }
 }
 
-struct SwiftUIView_Previews: PreviewProvider {
-    static var previews: some View {
-        SwiftUIView()
-    }
-}

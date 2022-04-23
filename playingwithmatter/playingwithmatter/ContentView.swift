@@ -8,10 +8,9 @@
 import SwiftUI
 
 struct ContentView: View {
-    @State var input = ""
+    @State private var counter:Int = 0
     var body: some View {
         NavigationView{
-            
             ZStack { // 1
                 Color.white // 2
                 VStack{
@@ -19,16 +18,11 @@ struct ContentView: View {
                     Text("Welcome To Truth and Dare Game ")
                         .font(.system(size: 25))
                         .bold()
-                    Spacer().frame(minHeight: 10, maxHeight: 200)
-                    Text("Enter Number of Players")
-                        .font(.system(size: 20))
-                        .bold()
+                    Spacer().frame(minHeight: 10, maxHeight: 50)
                     Spacer().frame(minHeight: 10, maxHeight: 100)
-                    TextField("Input", text: $input)
-                        .padding()
-                        .keyboardType(.decimalPad)
+                    Stepper("Number of Players \(counter)", value: $counter,in:0...8,step: 2).padding(50)
                     Spacer()
-                    NavigationLink(destination: SwiftUIView()) {
+                    NavigationLink(destination: SwiftUIView(Counter: $counter)) {
                         Text("Start Game")
                             .frame(minWidth: 0, maxWidth: 300)
                             .padding()
@@ -37,6 +31,7 @@ struct ContentView: View {
                             .cornerRadius(40)
                             .font(.title)
                     }
+                    Spacer().frame(minHeight: 10, maxHeight: 100)
                 }
             }
             .accentColor(Color.black)
