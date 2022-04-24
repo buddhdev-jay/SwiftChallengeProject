@@ -14,6 +14,7 @@ struct SwiftUIView: View {
     @State private var isAnimating = false
     @State private var showProgress = false
     @State private var playerNumber = 1
+    @State var buttonIsHidden = 0
     var foreverAnimation: Animation {
         Animation.linear(duration: 2.0)
     }
@@ -21,13 +22,17 @@ struct SwiftUIView: View {
         VStack {
            // Text("\(Int(Counter))")
             //Text("\(playerNumber)   \((Counter + (playerNumber / 2) % Counter) == 0 ? Counter : (Counter + (playerNumber / 2) % Counter))")
-            Button(action: { self.showProgress.toggle()
+                Text("Tap Bottole to Reset")
+                .opacity( buttonIsHidden % 2 != 0 ? 0 : 1)
+                Button(action: { self.showProgress.toggle()
                 playerNumber = Int.random(in: 1...Counter)
                 degreeToRotate = playerNumber
                 degreeToRotate *= (360 / Counter)
                 debugPrint(degreeToRotate)
-                degreeToRotate += 360
                 
+                degreeToRotate += 360
+                buttonIsHidden += 1
+                    debugPrint(buttonIsHidden)
             }, label: {
                 if showProgress {
                     Image("bottle")
